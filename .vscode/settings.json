@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "deque": "cpp",
+        "iomanip": "cpp",
+        "iostream": "cpp"
+    },
+    "editor.formatOnSave": true,
+}

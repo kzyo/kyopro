@@ -1,0 +1,32 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Debug",
+			"program": "${workspaceFolder}/${fileBasenameNoExtension}",
+			"args": [],
+			"cwd": "${workspaceFolder}",
+			"preLaunchTask": "C/C++2: g++ build active file",
+			"linux": {
+				"MIMode": "gdb",
+				"setupCommands": [
+					{
+						"text": "-enable-pretty-printing",
+						"description": "enable pretty printing",
+						"ignoreFailures": true
+					},
+					{
+						"text": "handle SIGPIPE nostop noprint pass",
+						"description": "ignore SIGPIPE",
+						"ignoreFailures": true
+					}
+				]
+			},
+		}
+	]
+}
