@@ -39,6 +39,10 @@ int main()
         REP(j, N)
         {
             rad[j] = atan2(p[j].x - center.x, p[j].y - center.y);
+            if (rad[j] < 0)
+            {
+                rad[j] += 2 * M_PI;
+            }
         }
         rad.erase(rad.begin() + i);
         sort(rad.begin(), rad.end());
@@ -53,15 +57,19 @@ int main()
             }
 
             auto cand = upper_bound(rad.begin(), rad.end(), target);
-            ll idx = distance(rad.begin(), cand);
-            ll idx2 = idx - 1;
-            if (idx2 < 0)
-            {
-                idx2 = rad.size() - 1;
-            }
+            ll idx = distance(rad.begin(), cand) % rad.size();
+            ll idx2 = (idx - 1 + rad.size()) % rad.size();
 
             ld val1 = abs(one - rad[idx]);
+            if (val1 > M_PI)
+            {
+                val1 = 2 * M_PI - val1;
+            }
             ld val2 = abs(one - rad[idx2]);
+            if (val2 > M_PI)
+            {
+                val2 = 2 * M_PI - val2;
+            }
             maxRad = max(maxRad, max(val1, val2));
         }
     }

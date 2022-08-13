@@ -2,7 +2,8 @@
     "files.associations": {
         "deque": "cpp",
         "iomanip": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "chrono": "cpp"
     },
     "editor.formatOnSave": true,
 }
