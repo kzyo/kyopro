@@ -3,7 +3,12 @@
         "deque": "cpp",
         "iomanip": "cpp",
         "iostream": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "__locale": "cpp",
+        "__string": "cpp",
+        "regex": "cpp",
+        "string": "cpp",
+        "string_view": "cpp"
     },
     "editor.formatOnSave": true,
 }

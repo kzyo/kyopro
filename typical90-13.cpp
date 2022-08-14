@@ -12,27 +12,20 @@ using namespace std;
 using namespace atcoder;
 using mint = modint998244353;
 
-int main()
+/* ダイクストラ法 ノードは1~N(0始まりではない)の想定
+    戻り 各ノードへのコスト
+    引数 
+    G: 辺とコスト G[from] = vector<pair<to, cost>>
+    s: 開始ノード
+*/
+vector<ll> dijkstra(vector<vector<pair<ll, ll>>> G, ll startNode)
 {
-    ll N, M;
-    cin >> N >> M;
-
-    vector<vector<pair<ll, ll>>> G(N + 1); // G[from] = vector<pair<to, cost>>
-    REP(i, M)
-    {
-        ll a, b, c;
-        cin >> a >> b >> c;
-        G[a].push_back(pair<ll, ll>{b, c});
-        G[b].push_back(pair<ll, ll>{a, c});
-    }
-
-    // auto comp = [](pair<ll, ll> a, pair<ll, ll> b) { return a.second < b.second; }; // pair<node, cost>
-    //priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, decltype(comp)> pq{comp};
+    ll N = G.size();
     priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
-    pq.push(pair<ll, ll>{0, 1});
+    pq.push(pair<ll, ll>{0, startNode});
 
-    vector<ll> dist(N + 1, __LONG_LONG_MAX__);
-    dist[1] = 0;
+    vector<ll> dist(N, __LONG_LONG_MAX__);
+    dist[startNode] = 0;
 
     while (!pq.empty())
     {
@@ -54,29 +47,25 @@ int main()
         }
     }
 
-    vector<ll> dist2(N + 1, __LONG_LONG_MAX__);
-    dist2[N] = 0;
-    pq.push(pair<ll, ll>{0, N});
+    return dist;
+}
 
-    while (!pq.empty())
+int main()
+{
+    ll N, M;
+    cin >> N >> M;
+
+    vector<vector<pair<ll, ll>>> G(N + 1); // G[from] = vector<pair<to, cost>>
+    REP(i, M)
     {
-        pair<ll, ll> costNode = pq.top();
-        pq.pop();
-        if (costNode.first > dist2[costNode.second])
-            continue;
-
-        for (auto toCost : G[costNode.second])
-        {
-            ll to = toCost.first;
-            ll cost = toCost.second;
-
-            if (dist2[to] > dist2[costNode.second] + cost)
-            {
-                dist2[to] = dist2[costNode.second] + cost;
-                pq.push(pair<ll, ll>{dist2[to], to});
-            }
-        }
+        ll a, b, c;
+        cin >> a >> b >> c;
+        G[a].push_back(pair<ll, ll>{b, c});
+        G[b].push_back(pair<ll, ll>{a, c});
     }
+
+    vector<ll> dist = dijkstra(G, 1);
+    vector<ll> dist2 = dijkstra(G, N);
 
     for (int i = 1; i <= N; i++)
     {
