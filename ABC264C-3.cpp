@@ -29,9 +29,7 @@ void _combination(vector<int> tmp, vector<vector<int>> *combinations, int select
 
     if (tmp.size() == selectNum)
     {
-        vector<int> t(tmp.size());
-        copy(tmp.begin(), tmp.end(), t.begin());
-        (*combinations).push_back(t);
+        (*combinations).push_back(tmp);
         return;
     }
 
@@ -39,12 +37,12 @@ void _combination(vector<int> tmp, vector<vector<int>> *combinations, int select
     if (tmp.size() > 0)
         start = tmp.back() + 1;
 
+    int idx = tmp.size();
+    tmp.resize(tmp.size() + 1);
     for (int num = start; num <= endNum; num++)
     {
-        vector<int> new_tmp(tmp.size());
-        copy(tmp.begin(), tmp.end(), new_tmp.begin());
-        new_tmp.push_back(num);
-        _combination(new_tmp, combinations, selectNum, startNum, endNum);
+        tmp[idx] = num;
+        _combination(tmp, combinations, selectNum, startNum, endNum);
     }
 }
 
