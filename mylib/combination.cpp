@@ -1,5 +1,6 @@
 /*
   startNum ~ endNumからselectNum個選んだ組み合わせを返す
+  メモリ利用量ヤバい（全パターンをvectorにして返す）ので極めて少数の場合しか使えない
 */
 void _combination(vector<int> tmp, vector<vector<int>> *combinations, int selectNum, int startNum, int endNum);
 
