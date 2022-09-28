@@ -9,7 +9,8 @@
         "regex": "cpp",
         "string": "cpp",
         "string_view": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "queue": "cpp"
     },
     "editor.formatOnSave": true,
 }
