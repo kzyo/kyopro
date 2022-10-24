@@ -14,7 +14,14 @@ using mint = modint998244353;
 
 int main()
 {
+    ll A, B;
+    cin >> A >> B;
+    B *= 1000;
+    ld ans = B / (ld)A;
+    auto ans2 = round(ans) / 1000;
 
-    cout << fixed << setprecision(20); // 小数点以下20桁まで表示
+    cout
+        << fixed << setprecision(3); // 小数点以下20桁まで表示
+    cout << ans2 << endl;
     return 0;
 }
