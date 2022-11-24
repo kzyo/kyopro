@@ -11,7 +11,8 @@
         "string_view": "cpp",
         "ostream": "cpp",
         "queue": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "all": "cpp"
     },
     "editor.formatOnSave": true,
 }
